@@ -1,9 +1,9 @@
 ---
 slug: ai-solutions-builder
-goal: "Diventare un AI Solutions Builder — identificare opportunità AI nelle aziende, progettare e costruire soluzioni AI-powered (agenti, RAG, automazioni integrative), supervisionare l'implementazione con autorevolezza tecnica"
+goal: "Diventare un Technical Solutions Architect con specializzazione AI — sa revisionare codice (sa cosa controllare per dominio), sa prendere e difendere decisioni tecniche davanti a un team di developer, sa identificare e costruire soluzioni AI-powered. Non scrive codice: lo governa."
 created: 2026-05-18
 status: active
-estimated_weeks: 60
+estimated_weeks: 70
 max_active_check: respected
 nodes:
   - id: 1
@@ -61,6 +61,17 @@ nodes:
     completed: null
     examination_level: null
 
+  - id: 6
+    name: "Code Review & Decisioni Tecniche"
+    concepts: [code-review-security-checklist, code-review-database-checklist, code-review-api-checklist, code-review-ai-checklist, architectural-decision-reasoning, technical-tradeoffs]
+    layer: L2
+    mini_project: "Ricevere un PR reale o simulato AI-generato su ogni dominio (security, database, API, AI) e produrre una review scritta con problemi trovati, decisioni proposte e motivazioni"
+    status: pending
+    completion_criteria: "Alessio consegna 4 review scritte (una per dominio) — Socrate valuta se i problemi critici sono stati trovati e se le motivazioni delle decisioni reggono all'interrogatorio"
+    started: null
+    completed: null
+    examination_level: null
+
 esame_finale:
   fase_corrente: null
   domande_risposte: []
@@ -70,9 +81,11 @@ esame_finale:
 
 ## Contesto e motivazione
 
-Alessio vuole entrare nelle aziende come figura esperta di AI: identificare dove l'AI crea valore reale, progettare la soluzione, costruirla o supervisarne l'implementazione. Non developer tradizionale — AI Solutions Builder. Il mercato italiano delle PMI è quasi vuoto su questa figura: chi arriva preparato adesso ha un vantaggio strutturale.
+Alessio vuole diventare un Technical Solutions Architect con specializzazione AI. Il goal NON è scrivere codice — è governarlo: revisionare output AI e developer, sapere cosa controllare per dominio, prendere e difendere decisioni tecniche in una stanza con programmatori esperti.
 
-Ha già iniziato a costruire SaaS con AI (menu-qr-saas). Il gap è la comprensione tecnica che permette di supervisionare l'AI invece di fidarsi ciecamente dell'output.
+Vuole entrare nelle aziende, capire i problemi tecnici reali, proporre soluzioni architetturali (AI o tradizionali), e avere abbastanza controllo da non dipendere ciecamente dall'AI o dai developer per le decisioni che contano.
+
+Ha già iniziato a costruire SaaS con AI (menu-qr-saas). Il gap è la comprensione sistematica dei domini tecnici e la capacità di revisione.
 
 ## Nodi
 
@@ -91,9 +104,14 @@ Un agente senza sistemi reali non serve. Connettere API esterne, webhook, databa
 **Nodo 5 — Valutare e proporre**
 La parte che trasforma le competenze tecniche in valore professionale vendibile. Analisi fit AI, scoping, ROI, risk assessment. Mini-progetto: proposta completa per un cliente, difesa davanti a Socrate-cliente-scettico.
 
+**Nodo 6 — Code Review & Decisioni Tecniche**
+Il nodo che risponde direttamente al goal: sapere cosa controllare per dominio (security, database, API, AI), produrre review scritte con problemi trovati e motivazioni delle decisioni. La checklist mentale automatica che un SA usa nei primi 30 minuti su un codebase nuovo. Mini-progetto: 4 review reali su codice AI-generato, una per dominio.
+
 ## Note
 
 - Nodo 1 già in_progress dalla sessione 2026-05-18. Concetti L1 acquisiti: jwt-structure, rls-multi-tenant, env-variables.
 - Il Nodo 1 è anche fondamenta per gli altri nodi — non si può saltare.
 - Nessun assessment prerequisiti formale fatto sul Nodo 2 — da fare all'inizio della prima sessione del Nodo 2.
-- Stima conservative: 60 settimane (15 mesi) con ritmo 2-3 ore/settimana. Ritmo sostenuto può ridurre a 10-12 mesi.
+- Stima aggiornata: 70 settimane (~17 mesi) con ritmo 2-3 ore/settimana. Ritmo sostenuto può ridurre a 12-14 mesi.
+- Goal ridefinito in sessione: non "scrivere codice" ma "revisionare, controllare, decidere". Nodo 6 aggiunto specificamente per questo.
+- Goal definitivo confermato da Alessio il 2026-05-18.
