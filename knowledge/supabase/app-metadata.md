@@ -1,9 +1,9 @@
 ---
 concept: app-metadata
 domain: supabase
-level: pending
+level: L1
 last_reviewed: 2026-05-18
-status: studied_not_applied
+status: applied
 ---
 
 # app_metadata vs user_metadata
@@ -39,4 +39,4 @@ await supabaseAdmin.auth.admin.updateUserById(userId, {
 
 ## Applications
 
-_nessuna ancora — da applicare entro 48h_
+- 2026-05-18 — calibrazione plan `solutions-architect-ai-reviewer`: L1 confermato. Sa la distinzione user_metadata (modificabile dall'utente) vs app_metadata (solo backend service_role). Manca esempio operativo del danno se sbagliato.

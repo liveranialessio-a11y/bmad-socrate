@@ -36,3 +36,4 @@ Accesso via: `Deno.env.get("NOME_VARIABILE")`
 ## Applications
 
 - 2026-05-18 — analisi `.env.example` menu-qr-saas: ragionato sul prefisso NEXT_PUBLIC_, ruolo di ALLOWED_ORIGIN (CORS server-side), distinzione .env.example vs .env.local, verifica .gitignore
+- 2026-05-18 — calibrazione plan `solutions-architect-ai-reviewer`: confermato L1 (sa il pericolo NEXT_PUBLIC_ su service_role). Gap: non risponde alla domanda operativa "quanto tempo hai per reagire" su leak.

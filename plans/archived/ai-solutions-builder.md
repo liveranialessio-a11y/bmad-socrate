@@ -2,7 +2,9 @@
 slug: ai-solutions-builder
 goal: "Diventare un Technical Solutions Architect con specializzazione AI — sa revisionare codice (sa cosa controllare per dominio), sa prendere e difendere decisioni tecniche davanti a un team di developer, sa identificare e costruire soluzioni AI-powered. Non scrive codice: lo governa."
 created: 2026-05-18
-status: active
+status: archived
+archived: 2026-05-18
+archived_reason: test-plan-discarded
 estimated_weeks: 75
 max_active_check: respected
 nodes:

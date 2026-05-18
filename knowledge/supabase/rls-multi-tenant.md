@@ -44,3 +44,4 @@ Il body può essere manipolato dall'utente — il JWT no (firmato da Supabase).
 ## Applications
 
 - 2026-05-18 — analisi migration reale del progetto: policy anon/authenticated/super_admin su restaurants, catena PostgREST→session variable→auth.jwt(), USING vs WITH CHECK, operatori -> e ->>
+- 2026-05-18 — calibrazione plan `solutions-architect-ai-reviewer`: confermato L1 (mappa concettuale USING/WITH CHECK corretta). Gap: non sa scrivere la policy SQL = applicazione mancante. Target L2 nel plan.

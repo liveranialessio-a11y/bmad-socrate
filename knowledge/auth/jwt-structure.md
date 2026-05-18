@@ -46,3 +46,4 @@ Senza di essa non si può né creare né verificare un JWT valido. Per questo no
 ## Applications
 
 - 2026-05-18 — analisi `.env.example` del progetto menu-qr-saas: identificate tutte le variabili, ragionato sul prefisso NEXT_PUBLIC_ e sul ruolo di JWT_SECRET
+- 2026-05-18 — calibrazione plan `solutions-architect-ai-reviewer`: confermato L1 (sa scadenza 1h Supabase). Gap: non sa cosa fare operativamente per fermare un JWT rubato (revoke non possibile a runtime).
