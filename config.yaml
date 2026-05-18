@@ -1,0 +1,7 @@
+﻿brain_path: "C:\Users\pc\.bmad-socrate"
+git_sync: true
+git_repo_path: "https://github.com/liveranialessio-a11y/bmad-socrate"
+review_l1_days: 30
+review_l2_days: 14
+review_l3_days: 7
+max_active_plans: 2

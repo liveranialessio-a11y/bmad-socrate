@@ -1,0 +1,5 @@
+﻿# PDF, EPUB, DOCX sources are never committed — only their indices (.md) are.
+sources/**/*.pdf
+sources/**/*.epub
+sources/**/*.docx
+sources/**/*.mobi
