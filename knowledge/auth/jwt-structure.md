@@ -1,9 +1,9 @@
 ---
 concept: jwt-structure
 domain: auth
-level: pending
+level: L1
 last_reviewed: 2026-05-18
-status: studied_not_applied
+status: applied
 ---
 
 # JWT — Struttura e Firma
@@ -36,6 +36,13 @@ Per modificare il payload (es. cambiare `restaurant_id`) serve rifirmare con la 
 }
 ```
 
+## SUPABASE_JWT_SECRET
+
+`SUPABASE_JWT_SECRET` è la stringa segreta usata come terzo ingrediente nella firma:
+`signature = HMAC-SHA256(base64(header) + "." + base64(payload), JWT_SECRET)`
+
+Senza di essa non si può né creare né verificare un JWT valido. Per questo non ha `NEXT_PUBLIC_` — chiunque la conosca può firmare token arbitrari.
+
 ## Applications
 
-_nessuna ancora — da applicare entro 48h_
+- 2026-05-18 — analisi `.env.example` del progetto menu-qr-saas: identificate tutte le variabili, ragionato sul prefisso NEXT_PUBLIC_ e sul ruolo di JWT_SECRET

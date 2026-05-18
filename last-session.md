@@ -1,28 +1,27 @@
-# Last Session — 2026-05-18
+# Last Session — 2026-05-18 (sessione 2)
 
 ## Cosa è successo
 
-Prima sessione Socrate — cold start, registrazione progetto `menu-qr-saas` come applicazione di riferimento.
+Applicazione guidata su `.env.example` del progetto menu-qr-saas.
 
-Argomento: meccanismo di sicurezza multi-tenant del SaaS (JWT + RLS + app_metadata).
+Alessio ha analizzato tutte le variabili d'ambiente e ragionato sul prefisso NEXT_PUBLIC_.
 
 ## Concetti toccati
 
-- **jwt-structure**: struttura header.payload.signature, differenza firma vs cifratura, payload leggibile ma non modificabile
-- **rls-multi-tenant**: catena PostgREST → Postgres → auth.jwt() → policy RLS, regola restaurant_id mai dal body
-- **app-metadata**: differenza app_metadata (solo service_role) vs user_metadata (utente), dove vive (auth.users), flusso onboarding
-- **env-variables**: .env.local vs .env.example, prefisso NEXT_PUBLIC_, Secrets Supabase per Edge Functions
+- **jwt-structure** → portato a L1. Gap risolti: JWT_SECRET come chiave di firma (ingrediente del frullatore), distinzione firmato vs criptato (payload leggibile da chiunque, non modificabile senza il secret), token rubato usabile senza JWT_SECRET fino a scadenza, vettori di furto (HTTP, XSS/localStorage).
+- **env-variables** → applicazione in corso (analisi .env.example). Ragionamento corretto su NEXT_PUBLIC_ e ALLOWED_ORIGIN. Da chiudere con domanda finale.
+- **rls-multi-tenant**, **app-metadata** → ancora pending, non toccati.
 
 ## Livello Alessio
 
-Principiante su concetti backend/API. Capisce bene i ragionamenti se si parte da analogie concrete. NON mostrare codice prima di aver spiegato il concetto a parole. Salire un gradino alla volta.
+Principiante backend. Capisce bene se guidato passo-passo. Tende a confondere "usare un token" con "creare un token" — monitorare. Non mostrare codice prima del concetto a parole.
 
 ## In sospeso
 
-- Nessun concetto applicato ancora — tutti in stato `pending` (regola 48h)
-- Flusso completo onboarding ristorante non ancora implementato nel codice
-- Edge Functions: concetto capito, codice non ancora scritto
+- `env-variables`: quasi chiuso, manca domanda finale
+- `rls-multi-tenant`: priorità alta — da applicare nella prossima fase
+- `app-metadata`: collegato a jwt-structure, da completare
 
 ## Prossima sessione
 
-Verificare se Alessio ha applicato qualcuno dei concetti (regola 48h). Se sì, portare a level L3. Altrimenti proporre applicazione pratica guidata su uno dei concetti pending.
+Chiudere env-variables → poi rls-multi-tenant con applicazione su codice reale del progetto.

@@ -7,7 +7,7 @@ Formato per riga: `- [topic](knowledge/{domain}/{topic}.md) — L{level} — las
 
 ## auth
 
-- [jwt-structure](knowledge/auth/jwt-structure.md) — pending — last_reviewed: 2026-05-18
+- [jwt-structure](knowledge/auth/jwt-structure.md) — L1 — last_reviewed: 2026-05-18
 
 ## supabase
 
