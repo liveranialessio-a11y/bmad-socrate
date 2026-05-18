@@ -1,9 +1,9 @@
 ---
 concept: rls-multi-tenant
 domain: supabase
-level: pending
+level: L1
 last_reviewed: 2026-05-18
-status: studied_not_applied
+status: applied
 ---
 
 # RLS Multi-Tenant — Meccanismo Completo
@@ -36,6 +36,11 @@ USING (
 `restaurant_id` va estratto **sempre dal JWT**, mai dal body della request.
 Il body può essere manipolato dall'utente — il JWT no (firmato da Supabase).
 
+## Gap da coprire (prossima sessione)
+
+- Supabase client TypeScript (createServerClient, SSR cookies, come il JWT viene allegato automaticamente)
+- Differenza 401 vs 0 righe: RLS non lancia errori, filtra silenziosamente
+
 ## Applications
 
-_nessuna ancora — da applicare entro 48h_
+- 2026-05-18 — analisi migration reale del progetto: policy anon/authenticated/super_admin su restaurants, catena PostgREST→session variable→auth.jwt(), USING vs WITH CHECK, operatori -> e ->>

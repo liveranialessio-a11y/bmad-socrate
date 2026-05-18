@@ -1,27 +1,30 @@
-# Last Session — 2026-05-18 (sessione 2)
+# Last Session — 2026-05-18 (sessione 2 — completa)
 
 ## Cosa è successo
 
-Applicazione guidata su `.env.example` del progetto menu-qr-saas.
+Sessione di applicazione guidata. Tutti e 4 i concetti pending toccati.
 
-Alessio ha analizzato tutte le variabili d'ambiente e ragionato sul prefisso NEXT_PUBLIC_.
+## Concetti portati a L1
 
-## Concetti toccati
+- **jwt-structure** → L1. Capisce: header/payload/signature, JWT_SECRET come chiave di firma, payload leggibile da chiunque (firmato non criptato), token rubato usabile fino a scadenza, vettori furto (HTTP/XSS).
+- **env-variables** → L1. Capisce: NEXT_PUBLIC_ solo per il browser, .env.local mai in git, ALLOWED_ORIGIN è server-side, verifica .gitignore sul file reale.
+- **rls-multi-tenant** → L1. Capisce: catena PostgREST→session variable→auth.jwt()→policy, USING vs WITH CHECK, operatori -> e ->>, multi-policy OR, sito pubblico usa WHERE esplicito non RLS.
 
-- **jwt-structure** → portato a L1. Gap risolti: JWT_SECRET come chiave di firma (ingrediente del frullatore), distinzione firmato vs criptato (payload leggibile da chiunque, non modificabile senza il secret), token rubato usabile senza JWT_SECRET fino a scadenza, vettori di furto (HTTP, XSS/localStorage).
-- **env-variables** → applicazione in corso (analisi .env.example). Ragionamento corretto su NEXT_PUBLIC_ e ALLOWED_ORIGIN. Da chiudere con domanda finale.
-- **rls-multi-tenant**, **app-metadata** → ancora pending, non toccati.
+## Ancora pending
+
+- **app-metadata** → non toccato questa sessione.
+
+## Gap segnalati
+
+- Supabase client TypeScript (createServerClient, SSR cookies) — non capito, da studiare come concetto separato.
+- Distinzione 401 vs 0 righe (RLS filtra silenziosamente) — spiegato ma da consolidare.
 
 ## Livello Alessio
 
-Principiante backend. Capisce bene se guidato passo-passo. Tende a confondere "usare un token" con "creare un token" — monitorare. Non mostrare codice prima del concetto a parole.
-
-## In sospeso
-
-- `env-variables`: quasi chiuso, manca domanda finale
-- `rls-multi-tenant`: priorità alta — da applicare nella prossima fase
-- `app-metadata`: collegato a jwt-structure, da completare
+Cresce bene sulla parte SQL/meccanismo. Il codice TypeScript resta poco chiaro — non mostrare codice TypeScript senza prima spiegare il layer a parole. Procede bene con analogie concrete.
 
 ## Prossima sessione
 
-Chiudere env-variables → poi rls-multi-tenant con applicazione su codice reale del progetto.
+- Chiudere **app-metadata** (ultimo concetto pending)
+- Aprire nuovo concetto: **Supabase client TypeScript** (createServerClient, SSR, cookies)
+- Poi: learning plan per definire obiettivi strutturati

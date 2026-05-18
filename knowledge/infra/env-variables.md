@@ -1,9 +1,9 @@
 ---
 concept: env-variables
 domain: infra
-level: pending
+level: L1
 last_reviewed: 2026-05-18
-status: studied_not_applied
+status: applied
 ---
 
 # Variabili d'Ambiente
@@ -35,4 +35,4 @@ Accesso via: `Deno.env.get("NOME_VARIABILE")`
 
 ## Applications
 
-_nessuna ancora — da applicare entro 48h_
+- 2026-05-18 — analisi `.env.example` menu-qr-saas: ragionato sul prefisso NEXT_PUBLIC_, ruolo di ALLOWED_ORIGIN (CORS server-side), distinzione .env.example vs .env.local, verifica .gitignore

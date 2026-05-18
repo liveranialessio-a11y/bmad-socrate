@@ -11,9 +11,9 @@ Formato per riga: `- [topic](knowledge/{domain}/{topic}.md) — L{level} — las
 
 ## supabase
 
-- [rls-multi-tenant](knowledge/supabase/rls-multi-tenant.md) — pending — last_reviewed: 2026-05-18
+- [rls-multi-tenant](knowledge/supabase/rls-multi-tenant.md) — L1 — last_reviewed: 2026-05-18
 - [app-metadata](knowledge/supabase/app-metadata.md) — pending — last_reviewed: 2026-05-18
 
 ## infra
 
-- [env-variables](knowledge/infra/env-variables.md) — pending — last_reviewed: 2026-05-18
+- [env-variables](knowledge/infra/env-variables.md) — L1 — last_reviewed: 2026-05-18
