@@ -3,71 +3,139 @@ slug: ai-solutions-builder
 goal: "Diventare un Technical Solutions Architect con specializzazione AI — sa revisionare codice (sa cosa controllare per dominio), sa prendere e difendere decisioni tecniche davanti a un team di developer, sa identificare e costruire soluzioni AI-powered. Non scrive codice: lo governa."
 created: 2026-05-18
 status: active
-estimated_weeks: 70
+estimated_weeks: 75
 max_active_check: respected
 nodes:
   - id: 1
-    name: "Fondamenti dei sistemi"
-    concepts: [jwt-structure, rls-multi-tenant, app-metadata, env-variables, supabase-client-typescript, api-rest-basics, database-schema-basics]
-    layer: L1
-    mini_project: "Spiegare a voce l'architettura di sicurezza completa del menu-qr-saas — JWT, RLS, variabili d'ambiente, flusso autenticazione — e identificare almeno 3 pattern di errore AI in una migration reale"
+    name: "Security & Authentication"
+    concepts:
+      - jwt-structure
+      - rls-multi-tenant
+      - env-variables
+      - app-metadata
+      - supabase-client-typescript
+      - oauth-flow-basics
+      - owasp-top10-web
+      - session-management
+    layer: L1-L2
+    mini_project: "Security review del menu-qr-saas: analizzare 3 file reali (migration, API route, componente), trovare tutti i problemi di sicurezza presenti, produrre un report scritto con problema + impatto + fix proposto"
     status: in_progress
-    completion_criteria: "Alessio spiega senza aiuto il flusso completo dalla request HTTP alla riga filtrata da RLS; identifica almeno 3 errori critici in codice AI-generato su auth e database"
+    completion_criteria: "Identifica almeno 5 problemi critici di sicurezza in codice AI-generato; spiega il flusso completo dalla request HTTP alla riga filtrata da RLS senza aiuto; sa distinguere cosa è responsabilità del frontend vs backend vs database"
     started: 2026-05-18
     completed: null
     examination_level: null
 
   - id: 2
-    name: "Come funziona un LLM davvero"
-    concepts: [llm-context-window, tokenization, hallucination-patterns, tool-use-function-calling, cost-latency-tradeoffs, prompt-engineering-applied]
+    name: "Database Design"
+    concepts:
+      - schema-normalization
+      - foreign-keys-constraints
+      - migrations-versioning
+      - indexing-strategies
+      - soft-delete-pattern
+      - transactions-basics
+      - sql-joins
+      - data-types-postgres
     layer: L1-L2
-    mini_project: "Costruire un agente con tool use via API Claude: dato un ordine in linguaggio naturale, l'agente estrae i dati strutturati e li salva su Supabase"
+    mini_project: "Analizzare il data model del menu-qr-saas: trovare almeno 3 scelte discutibili, proporre miglioramenti motivati per ciascuna. Poi progettare da zero uno schema per un caso cliente nuovo (es. sistema prenotazioni palestra)"
     status: pending
-    completion_criteria: "Alessio spiega perché un LLM alucina su un caso specifico; sa stimare il costo approssimativo di una chiamata API; ha costruito un agente funzionante con almeno 2 tool"
+    completion_criteria: "Progetta uno schema completo con FK cascade, soft delete dove serve, indexing motivato, RLS pensata in anticipo; sa spiegare perché ogni scelta è stata fatta e quali alternative ha escluso"
     started: null
     completed: null
     examination_level: null
 
   - id: 3
-    name: "Pattern AI: RAG e Agenti"
-    concepts: [embeddings-basics, vector-search, rag-architecture, agent-react-pattern, agent-memory-patterns, multi-agent-basics]
-    layer: L2
-    mini_project: "Costruire un sistema RAG su documenti reali (menu e policy del ristorante) con retrieval semantico e risposta con citazione della fonte"
+    name: "API & Backend Architecture"
+    concepts:
+      - rest-principles
+      - http-methods-status-codes
+      - server-vs-client-logic
+      - middleware-pattern
+      - error-handling-api
+      - rate-limiting-basics
+      - edge-functions-vs-server-actions
+      - api-versioning
+    layer: L1-L2
+    mini_project: "Analizzare le API routes del menu-qr-saas: produrre un report con errori di design trovati (logica sbagliata lato client, status code errati, mancanza di validazione, etc.) e proporre la versione corretta motivata"
     status: pending
-    completion_criteria: "Alessio progetta su carta l'architettura RAG per un caso cliente reale; sa spiegare quando RAG non serve; ha un sistema RAG funzionante"
+    completion_criteria: "Riceve un'API mal-progettata AI-generata e produce review con almeno 5 problemi specifici e motivazione tecnica; sa scegliere tra Edge Function e Server Action con reasoning solido"
     started: null
     completed: null
     examination_level: null
 
   - id: 4
-    name: "Integrazione sistemi"
-    concepts: [webhooks, rest-api-consumption, n8n-vs-custom-code, supabase-as-ai-backend, file-storage-for-ai, rate-limiting-basics]
-    layer: L1-L2
-    mini_project: "Costruire un workflow end-to-end: messaggio WhatsApp → agente AI → risposta automatica + salvataggio dati su Supabase"
+    name: "Frontend Architecture"
+    concepts:
+      - ssr-vs-csr-vs-ssg
+      - nextjs-rendering-models
+      - server-components-vs-client-components
+      - component-architecture-basics
+      - state-management-concepts
+      - hydration-basics
+      - web-vitals-performance-basics
+    layer: L1
+    mini_project: "Analizzare 5 pagine del sito_cantinadeiconti: per ognuna spiegare quale rendering model viene usato, se la scelta è corretta per quel caso, e cosa cambierebbe con una scelta diversa"
     status: pending
-    completion_criteria: "Alessio ha consegnato un'integrazione funzionante con almeno 3 sistemi; sa spiegare quando n8n batte codice custom e viceversa"
+    completion_criteria: "Dato un requisito di pagina (frequenza aggiornamento dati, SEO, interattività), sa scegliere il rendering model corretto con motivazione; sa spiegare cosa succede durante l'hydration e perché importa"
     started: null
     completed: null
     examination_level: null
 
   - id: 5
-    name: "Valutare e proporre"
-    concepts: [ai-fit-analysis, scoping-ai-project, roi-estimation-ai, risk-assessment-ai, proposta-tecnica-ai]
-    layer: L1
-    mini_project: "Produrre una proposta completa per un cliente reale o simulato: analisi problema, soluzione proposta, architettura, stima costi e tempi, rischi"
+    name: "AI Systems Architecture"
+    concepts:
+      - llm-context-window
+      - tokenization
+      - hallucination-patterns
+      - tool-use-function-calling
+      - rag-architecture
+      - embeddings-basics
+      - agent-patterns
+      - ai-cost-latency-tradeoffs
+      - prompt-injection-security
+      - when-to-use-ai
+    layer: L1-L2
+    mini_project: "Costruire un agente funzionante con tool use via Claude API su un caso concreto (es. dato un ordine in linguaggio naturale, l'agente lo classifica e lo salva su Supabase); poi costruire un mini-RAG su documenti reali del progetto"
     status: pending
-    completion_criteria: "Alessio presenta la proposta — Socrate fa da cliente scettico. Deve rispondere a obiezioni tecniche e di budget senza prepararsi in anticipo"
+    completion_criteria: "Dato un problema aziendale, sa scegliere tra RAG, agente, semplice LLM call, o nessuna AI — con motivazione tecnica e stima di costo; sa identificare i rischi di sicurezza in un sistema AI-powered"
     started: null
     completed: null
     examination_level: null
 
   - id: 6
-    name: "Code Review & Decisioni Tecniche"
-    concepts: [code-review-security-checklist, code-review-database-checklist, code-review-api-checklist, code-review-ai-checklist, architectural-decision-reasoning, technical-tradeoffs]
+    name: "System Design & Decisioni Architetturali"
+    concepts:
+      - monolith-vs-microservices
+      - scalability-concepts
+      - caching-strategies
+      - event-driven-architecture-basics
+      - architectural-patterns
+      - adr-architecture-decision-records
+      - cost-modeling-basics
+      - observability-basics
     layer: L2
-    mini_project: "Ricevere un PR reale o simulato AI-generato su ogni dominio (security, database, API, AI) e produrre una review scritta con problemi trovati, decisioni proposte e motivazioni"
+    mini_project: "Scrivere 3 ADR reali per il menu-qr-saas — decisioni già prese nel progetto (es. perché Supabase vs Firebase, perché soft delete, perché multi-tenant su DB singolo). Formato: problema → opzioni considerate → decisione → conseguenze"
     status: pending
-    completion_criteria: "Alessio consegna 4 review scritte (una per dominio) — Socrate valuta se i problemi critici sono stati trovati e se le motivazioni delle decisioni reggono all'interrogatorio"
+    completion_criteria: "Riceve un requisito nuovo non banale; produce un ADR con almeno 3 opzioni architetturali, pro/contro di ciascuna, decisione motivata; difende la scelta davanti a Socrate che propone l'alternativa peggiore come se fosse migliore"
+    started: null
+    completed: null
+    examination_level: null
+
+  - id: 7
+    name: "Code Review & Technical Leadership"
+    concepts:
+      - code-review-security-checklist
+      - code-review-database-checklist
+      - code-review-api-checklist
+      - code-review-frontend-checklist
+      - code-review-ai-checklist
+      - technical-feedback-communication
+      - architectural-decision-reasoning
+      - working-with-dev-teams
+    layer: L2-L3
+    mini_project: "4 review complete su codice AI-generato — una per dominio (security, database, API, AI). Ogni review: lista problemi trovati ordinati per severità, motivazione tecnica, fix proposto. Poi presentazione orale delle 4 review in sequenza"
+    status: pending
+    completion_criteria: "Socrate fa da developer + cliente scettico: contesta ogni problema trovato e propone soluzioni alternative sbagliate. Alessio difende le review con reasoning solido senza prepararsi in anticipo. Non bastano le risposte giuste — devono reggere all'interrogatorio"
     started: null
     completed: null
     examination_level: null
@@ -83,35 +151,36 @@ esame_finale:
 
 Alessio vuole diventare un Technical Solutions Architect con specializzazione AI. Il goal NON è scrivere codice — è governarlo: revisionare output AI e developer, sapere cosa controllare per dominio, prendere e difendere decisioni tecniche in una stanza con programmatori esperti.
 
-Vuole entrare nelle aziende, capire i problemi tecnici reali, proporre soluzioni architetturali (AI o tradizionali), e avere abbastanza controllo da non dipendere ciecamente dall'AI o dai developer per le decisioni che contano.
+Vuole entrare nelle aziende, capire i problemi tecnici reali, proporre soluzioni architetturali (AI o tradizionali), avere abbastanza controllo da non dipendere ciecamente né dall'AI né dai developer per le decisioni che contano.
 
-Ha già iniziato a costruire SaaS con AI (menu-qr-saas). Il gap è la comprensione sistematica dei domini tecnici e la capacità di revisione.
+Ha già iniziato a costruire SaaS con AI (menu-qr-saas). Il gap è la comprensione sistematica dei domini tecnici e la capacità di revisione strutturata.
 
 ## Nodi
 
-**Nodo 1 — Fondamenti dei sistemi** *(in_progress)*
-La base senza la quale non si può valutare nessuna soluzione AI. Sicurezza (JWT, RLS), database, variabili d'ambiente, client Supabase TypeScript, API REST. Già iniziato: jwt-structure L1, rls-multi-tenant L1, env-variables L1. Rimane: app-metadata, supabase-client-typescript, api-rest-basics, database-schema-basics.
+**Nodo 1 — Security & Authentication** *(in_progress)*
+La base non negoziabile. JWT, RLS, OAuth, OWASP, variabili d'ambiente, client Supabase. Senza questo ogni sistema che costruisce o supervisiona è insicuro senza saperlo. Già iniziato: jwt-structure L1, rls-multi-tenant L1, env-variables L1.
 
-**Nodo 2 — Come funziona un LLM davvero**
-Non uso superficiale. Capire context window, tokenizzazione, allucinazioni, tool use, costi. Senza questo si vendono soluzioni che non si sa perché falliscono. Mini-progetto: agente con tool use reale via Claude API.
+**Nodo 2 — Database Design**
+Il dominio dove l'AI fa più danni silenziosi. Schema sbagliato, FK mancanti, indexing assente, soft delete ignorato — tutto viene a galla mesi dopo in produzione. Alessio deve saper leggere un data model e trovare i problemi prima che arrivino.
 
-**Nodo 3 — Pattern AI: RAG e Agenti**
-I due pattern che coprono il 90% dei casi aziendali. RAG per dare memoria e documenti al modello. Agenti per workflow autonomi multi-step. Mini-progetto su documenti reali del progetto esistente.
+**Nodo 3 — API & Backend Architecture**
+Dove vive la logica business e come si espone. REST design, scelte server vs client, middleware, error handling. Un SA che non capisce perché certi endpoint sono sbagliati non può dirigere un backend developer.
 
-**Nodo 4 — Integrazione sistemi**
-Un agente senza sistemi reali non serve. Connettere API esterne, webhook, database, file storage. Mini-progetto end-to-end su un caso concreto (WhatsApp + Supabase + Claude).
+**Nodo 4 — Frontend Architecture**
+Non implementazione — comprensione delle scelte. SSR vs CSR vs SSG, Server vs Client Components, performance. Un SA deve capire perché il frontend è fatto così e quando la scelta è sbagliata.
 
-**Nodo 5 — Valutare e proporre**
-La parte che trasforma le competenze tecniche in valore professionale vendibile. Analisi fit AI, scoping, ROI, risk assessment. Mini-progetto: proposta completa per un cliente, difesa davanti a Socrate-cliente-scettico.
+**Nodo 5 — AI Systems Architecture**
+La specializzazione. Capire cosa fa davvero un LLM, quando RAG serve, come funzionano gli agenti, cosa costa, dove si rompe. Senza questo non si propone AI con credibilità.
 
-**Nodo 6 — Code Review & Decisioni Tecniche**
-Il nodo che risponde direttamente al goal: sapere cosa controllare per dominio (security, database, API, AI), produrre review scritte con problemi trovati e motivazioni delle decisioni. La checklist mentale automatica che un SA usa nei primi 30 minuti su un codebase nuovo. Mini-progetto: 4 review reali su codice AI-generato, una per dominio.
+**Nodo 6 — System Design & Decisioni Architetturali**
+Il cuore del ruolo SA. Pattern architetturali, trade-off, ADR, scalabilità, costi. La differenza tra chi propone soluzioni e chi le subisce.
+
+**Nodo 7 — Code Review & Technical Leadership**
+La sintesi operativa di tutto il percorso. Una checklist per dominio, la capacità di leggere un PR in 30 minuti trovando i problemi critici, e la competenza di comunicarli a un team. Il nodo finale è un esame pratico: 4 review reali difese sotto interrogatorio.
 
 ## Note
 
-- Nodo 1 già in_progress dalla sessione 2026-05-18. Concetti L1 acquisiti: jwt-structure, rls-multi-tenant, env-variables.
-- Il Nodo 1 è anche fondamenta per gli altri nodi — non si può saltare.
-- Nessun assessment prerequisiti formale fatto sul Nodo 2 — da fare all'inizio della prima sessione del Nodo 2.
-- Stima aggiornata: 70 settimane (~17 mesi) con ritmo 2-3 ore/settimana. Ritmo sostenuto può ridurre a 12-14 mesi.
-- Goal ridefinito in sessione: non "scrivere codice" ma "revisionare, controllare, decidere". Nodo 6 aggiunto specificamente per questo.
-- Goal definitivo confermato da Alessio il 2026-05-18.
+- Nodo 1 in_progress dal 2026-05-18. Concetti L1: jwt-structure, rls-multi-tenant, env-variables. Rimanenti: app-metadata, supabase-client-typescript, oauth-flow-basics, owasp-top10-web, session-management.
+- Goal definitivo confermato da Alessio il 2026-05-18 dopo brainstorming lungo.
+- Piano precedente era AI-centrico e generico — riscritto completamente su 7 nodi di dominio.
+- Stima: 75 settimane (~18 mesi) a 2-3 ore/settimana. Ritmo sostenuto: 12-14 mesi.
