@@ -14,7 +14,7 @@ Formato per riga: `- [topic](knowledge/{domain}/{topic}.md) — L{level} — las
 
 ## supabase
 
-- [rls-multi-tenant](knowledge/supabase/rls-multi-tenant.md) — L1 — last_reviewed: 2026-05-18
+- [rls-multi-tenant](knowledge/supabase/rls-multi-tenant.md) — L2 — last_reviewed: 2026-05-19
 - [app-metadata](knowledge/supabase/app-metadata.md) — L1 — last_reviewed: 2026-05-18
 - [supabase-client-typescript](knowledge/supabase/supabase-client-typescript.md) — L0 — last_reviewed: 2026-05-18
 

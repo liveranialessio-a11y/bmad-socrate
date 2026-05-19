@@ -1,36 +1,35 @@
-# Last Session — 2026-05-18 (sessione 3 — creazione plan)
+# Last Session — 2026-05-19 (sessione 4 — studio rls-multi-tenant L1→L2)
 
 ## Cosa è successo
 
-Sessione lunga di creazione completa del learning plan `solutions-architect-ai-reviewer`.
+Studio maieutico su `rls-multi-tenant`. Target: portare da L1 a L2 con applicazione concreta.
 
-Phase 1 (draft template ricco): 8 nodi, 99 concept con descrizioni, mini-project ancorati a menu-qr-saas, goal raffinato in "Senior reviewer di codice AI-generated" anziché "Solutions Architect generico".
+Errori apertura corretti:
+- JWT sta nell'header Authorization (non nel body) ← confusione corretta
+- `restaurant_id` nel JWT sta in `app_metadata` (non nel .env) ← errore grave corretto
+- service_role bypassa RLS: sicuro solo lato server, key mai in NEXT_PUBLIC_
 
-Phase 2 (gap review): 10 gap identificati, 7 accettati (GDPR, pagination, file upload, forms RHF+Zod, llm-pricing split, audit-log, adr-format-basics introdotto al Nodo 2), 1 nota overlap caching, 2 deferiti (WCAG, Postgres triggers).
+Concetti acquisiti:
+- USING vs WITH CHECK per ogni comando (SELECT/INSERT/UPDATE/DELETE)
+- Cross-tenant attack su UPDATE: senza WITH CHECK, staff A può spostare record nel ristorante B
+- Perché ::uuid: Postgres rifiuta `uuid = text` senza cast esplicito
+- Caso anon su sito pubblico: service_role + WHERE server-side, non policy anon
 
-Phase 3 (calibration): tutti i 109 concept calibrati in sessione unica (~3h equivalenti). Risultato: 10 L1 + 99 L0, zero L2+. Tutti i concept a path "study".
+Policy scritte autonomamente: UPDATE (USING+WITH CHECK) e DELETE (solo USING) — concetto corretto. Sintassi con errori ripetuti: apici JSON mancanti (`-> app_metadata` invece di `-> 'app_metadata'`), parentesi USING mancanti. Non è problema di comprensione, è memoria muscolare.
 
-Phase 4 (persist + activate): aggiornati 4 concept file esistenti, creati 105 nuovi, riscritto knowledge-index.md, aggiunta baseline table al plan, status: active, plan spostato in plans/active/.
+Promosso a **L2** con caveat: sintassi operatori JSON ancora instabile.
 
-## Plan archiviato
+## Cosa è rimasto fuori
 
-`ai-solutions-builder` archiviato come `test-plan-discarded` (plan precedente di prova).
-
-## Plan attivo
-
-`solutions-architect-ai-reviewer` — Nodo 1 pending. Prossimo step: iniziare studio formale concept dal Nodo 1 (Security & Authentication).
-
-## Pattern emersi (importanti per studio)
-
-- Lacuna comune sui L1: sa il "cosa" ma non l'"operativo" (RLS sa cos'è, non scrive; JWT rubato sa che dura 1h, non sa cosa fare).
-- Punti ciechi pericolosi: JWT in localStorage considerato normale (antipattern), CORS percepito come protezione completa (non lo è), migration considerate modificabili (antipattern grave).
-- Prima cosa da correggere nel Nodo 2: regola d'oro migration immutabili.
-- Nodo 8: flag `pending_verification`. Possibile L1 da esperienza pratica su `estimation-honest`, `communication-non-tech`, `saying-no-tech-debt`. Verificare con "raccontami l'ultimo preventivo".
+- Policy INSERT (non toccata)
+- Policy SELECT per anon — risposta: service_role bypassa, non serve policy anon per sito pubblico single-tenant
+- `supabase-client-typescript` (createServerClient, SSR cookies) — ancora L0, collegato a rls-multi-tenant
 
 ## Prossima sessione
 
-1. Iniziare studio formale Nodo 1 partendo da `jwt-structure` (già L1, target L2 con applicazione operativa)
-2. Oppure aprire dal concept più "applicato" che ha più impatto sicurezza: `rls-multi-tenant` (scrivere policy SQL completa)
-3. Oppure dal concept con antipattern interiorizzato `migrations-versioning` (Nodo 2 first thing)
+Opzioni per Nodo 1:
+1. **`jwt-structure`** L1→L2: operativamente cosa fare quando il JWT scade, refresh token, LocalStorage antipattern dimostrato
+2. **`supabase-client-typescript`** L0→L1: createServerClient vs createBrowserClient, SSR cookies, collegato direttamente a rls-multi-tenant
+3. **`app-metadata`** L1→L2: come si settano custom claims, differenza user_metadata vs app_metadata, perché solo admin può scrivere app_metadata
 
-Decidere in apertura sessione 4.
+Pattern da tenere a mente: gli apici JSON sono errore ricorrente. Nella prossima sessione SQL va chiesto subito la catena completa per verificare se si è fissata.
