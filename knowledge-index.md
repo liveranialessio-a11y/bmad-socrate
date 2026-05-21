@@ -21,6 +21,7 @@ Formato per riga: `- [topic](knowledge/{domain}/{topic}.md) — L{level} — las
 ## infra
 
 - [env-variables](knowledge/infra/env-variables.md) — L1 — last_reviewed: 2026-05-18
+- [nodejs-runtime](knowledge/infra/nodejs-runtime.md) — L0 — last_reviewed: 2026-05-22
 
 ## security
 
