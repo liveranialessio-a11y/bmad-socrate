@@ -2,7 +2,7 @@
 concept: rls-multi-tenant
 domain: supabase
 level: L2
-last_reviewed: 2026-05-19
+last_reviewed: 2026-05-22
 status: applied
 confidence_layer: L1
 sources:
@@ -89,6 +89,59 @@ Il sito single-tenant pubblico (es. sito_cantinadeiconti) non usa JWT autenticat
 
 `restaurant_id` va estratto **sempre dal JWT**, mai dal body della request. Il body può essere manipolato — il JWT è firmato da Supabase.
 
+## Multi-policy: OR implicito — la trappola
+
+Quando esistono più policy per lo stesso comando, Postgres le combina con **OR** (comportamento permissivo default). Una riga è visibile se almeno una policy dice sì.
+
+```sql
+-- BUG: queste due policy insieme permettono cross-tenant leak
+CREATE POLICY "staff legge ordini" ON orders FOR SELECT TO authenticated
+  USING (restaurant_id = jwt_restaurant_id());
+
+CREATE POLICY "tutti leggono ordini aperti" ON orders FOR SELECT TO authenticated
+  USING (status = 'open');  -- nessun filtro tenant!
+```
+
+Lo staff del ristorante A vede gli ordini aperti del ristorante B perché la seconda policy non filtra per tenant.
+
+**Fix 1 — policy unica con AND:**
+```sql
+USING (restaurant_id = jwt_restaurant_id() AND status = 'open')
+```
+
+**Fix 2 — AS RESTRICTIVE** (quando le regole hanno origini diverse: una di sicurezza, una di business):
+```sql
+CREATE POLICY "tutti leggono ordini aperti" ON orders FOR SELECT TO authenticated
+  AS RESTRICTIVE
+  USING (status = 'open');
+```
+`AS RESTRICTIVE` fa AND con tutte le altre policy invece di OR.
+
+## jwt_restaurant_id() — helper obbligatorio nel progetto
+
+Il cast diretto `::uuid` esplode con HTTP 500 PostgREST se il valore nel JWT non è un UUID valido.
+
+```sql
+-- VIETATO nel progetto
+USING (restaurant_id = (auth.jwt() -> 'app_metadata' ->> 'restaurant_id')::uuid)
+
+-- CORRETTO
+USING (restaurant_id = jwt_restaurant_id())
+```
+
+`jwt_restaurant_id()` usa regex + SELECT CASE: se il valore matcha il formato UUID → casta; altrimenti → NULL. Policy con NULL = 0 righe, nessun 500. Regola del progetto: mai cast diretto, sempre l'helper.
+
+## ENABLE ROW LEVEL SECURITY — obbligatorio
+
+Senza questa riga le policy non hanno effetto:
+```sql
+ALTER TABLE menu_items ENABLE ROW LEVEL SECURITY;
+```
+
+## RLS senza policy = deny by default
+
+Se RLS è abilitato ma non esiste nessuna policy per un'operazione (es. INSERT), quell'operazione è negata implicitamente per tutti i ruoli tranne service_role. Non serve una policy di deny esplicita.
+
 ## Domanda di review
 
-Uno staff del ristorante A esegue `UPDATE menu_items SET restaurant_id = 'B' WHERE id = '123'`. Hai solo `USING (restaurant_id = jwt.restaurant_id)` senza `WITH CHECK`. Cosa succede e perché?
+Hai due policy SELECT authenticated sulla stessa tabella: una filtra per `restaurant_id = jwt_restaurant_id()`, l'altra filtra per `status = 'active'`. Un utente del ristorante A può vedere i record attivi del ristorante B? Come risolvi?
